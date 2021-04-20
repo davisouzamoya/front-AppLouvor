@@ -18,7 +18,6 @@ export function Provider({children}){
   async function loadingMusic() {
     try{
       const response = await backEnd.get("music");
-
       setMusicTrue(response.data.filter(data => data.valid))
       setMusicList(response.data.filter(data => data.valid))
       setMusicFalse(response.data.filter(data => data.valid === false))

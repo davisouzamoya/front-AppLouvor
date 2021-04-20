@@ -9,7 +9,11 @@ import { Link } from 'react-router-dom'
 import { ProviderContext } from '../../Providers/contexts';
 
 function List() {
-  const { musicList } = useContext(ProviderContext)
+  const { loadingMusic,musicList } = useContext(ProviderContext)
+
+  useEffect(()=>{
+    loadingMusic()
+  },[])
 
   return (
     <div>

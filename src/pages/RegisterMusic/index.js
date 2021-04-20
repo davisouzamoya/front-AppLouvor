@@ -6,6 +6,7 @@ import { Form } from '@unform/web'
 import Button from '../../components/Button/index'
 import Textarea from '../../components/Textarea/index'
 import Select from '../../components/Select';
+import { useHistory } from 'react-router-dom'
 import { Container, } from "./style";
 import makeAnimated from 'react-select/animated';
 import { BsSearch } from 'react-icons/bs';
@@ -15,7 +16,7 @@ import { AuthContext } from '../../Providers/auth';
 function RegisterMusic() {
   const {artist,value,seachVideo,urlVideo,title,lyrics } = useContext(ProviderContext)
   const { datasUser } = useContext(AuthContext)
-
+  let history = useHistory();
     async function handleRegister(e){
       debugger
       try{
@@ -29,8 +30,8 @@ function RegisterMusic() {
           lyrics:lyric
         }
         const  response = await backEnd.post("music",data);
-        console.log(response)
         alert(response.data)
+        history.push("/list");
       }catch(err){
         console.log(err)
         alert(`Erro no cadastro`)

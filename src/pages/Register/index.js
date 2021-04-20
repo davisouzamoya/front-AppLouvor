@@ -6,7 +6,7 @@ import Header from '../../components/header/index'
 import { Container } from "./style";
 import * as Yup from 'yup';
 import { Form } from '@unform/web'
-
+import { useHistory } from 'react-router-dom'
 import { AiOutlineMail,AiOutlineCalendar } from 'react-icons/ai';
 import { RiLockPasswordLine,RiContactsBook2Line } from 'react-icons/ri';
 import { HiMusicNote } from 'react-icons/hi';
@@ -18,7 +18,7 @@ import {backEnd} from '../../service/api';
 
 function Register(){
   const formRef = useRef(null)
-  
+  let history = useHistory();
   const optionsIntrumentos = [
     { value: "guitarra", label: "Guitarra" },
     { value: "violao",   label: "Violão" },
@@ -80,7 +80,8 @@ function Register(){
       data.nascimento = data.nascimento.replaceAll('-','')
       data.phone = data.phone.replaceAll('(','').replaceAll(')','').replaceAll(' ','').replaceAll('-','')
       await backEnd.post("users", data);
-
+      alert('Cadastro Realizado com Sucesso!!!')
+      history.push("/");
     }catch (err){
       const validationErrors = {};
 

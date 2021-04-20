@@ -5,15 +5,15 @@ import { AuthContext } from '../../Providers/auth';
 import { useHistory } from 'react-router-dom'
 
 function Button({color,width,children,name,data,lyrinc}) {
-  const { datasUser } = useContext(AuthContext)
+  const datasUser = localStorage.getItem('@MinLouvor:user');
   let history = useHistory();
-
+debugger
   async function approve(){
     try{
       const  response = await backEnd.put("music",{
         artist:data.artist,
         title:data.music,
-        approver:datasUser.user.name,
+        approver:JSON.parse(datasUser).name,
         valid:true,
         lyrics:[lyrinc]
       });

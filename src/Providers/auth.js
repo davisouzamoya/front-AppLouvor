@@ -8,15 +8,6 @@ export function AuthProvider({children}){
   const { loadingMusic } = useContext(ProviderContext)
   const [currentUser, setCurrentUser] = useState(null);
   const [isLeader,setIsLeader] = useState(null);
-  const [datasUser, setDatastUser] = useState(() => {
-    const user = localStorage.getItem("@MinLouvor:user");
-
-    if (user) {
-      return { user: JSON.parse(user) };
-    }
-
-    return {};
-  });
 
   useEffect(()=>{
     const isLogin = localStorage.getItem('@MinLouvor:user');
@@ -61,7 +52,6 @@ export function AuthProvider({children}){
     <AuthContext.Provider value={{
       handleLogin,
       currentUser,
-      datasUser,
       signOut,
       isLeader
     }}>

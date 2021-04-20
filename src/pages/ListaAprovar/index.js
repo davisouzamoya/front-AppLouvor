@@ -11,8 +11,11 @@ import { ProviderContext } from '../../Providers/contexts';
 function ListaAprovar() {
   const [filterMusics,setFilterMusics] = useState('')
   const [search, setSearch] = useState('');
-  const { musicApproval } = useContext(ProviderContext)
+  const { loadingMusic,musicApproval } = useContext(ProviderContext)
 
+  useEffect(()=>{
+    loadingMusic()
+  },[])
   return (
     <div>
       <Header/>
