@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Header from '../../components/header/index'
 import { Profile } from "./style";
 import { backEnd } from "../../service/api";
 import Button from '../../components/Button/index'
 import Textarea from '../../components/Textarea/index'
+import { Form } from '@unform/web'
 import { useRouteMatch } from 'react-router-dom'
 
 function Profiles(){
@@ -11,7 +12,7 @@ function Profiles(){
   const [artist,setArtist] = useState()
   const [lyrinc,setLyrinc] = useState()
   const { params } = useRouteMatch()
-  
+  const formRef = useRef(null)
   useEffect(() =>{
     backEnd.get('music',{
       headers:{
@@ -42,6 +43,7 @@ function Profiles(){
     <div>
     <Header/>
     <Profile>
+      <Form ref={formRef}>
       <header>
         <img src={`https://www.vagalume.com.br/${artist}/images/${artist}.jpg`}/>
         <h1>{title}</h1>
@@ -50,6 +52,7 @@ function Profiles(){
         {lyrinc &&
         <Textarea
           value={lyrinc}
+          name='letra'
         />
       }
       </section>
@@ -61,6 +64,7 @@ function Profiles(){
           Gerar PP
         </Button>
       </footer>
+      </Form>
     </Profile>
     </div>
   );

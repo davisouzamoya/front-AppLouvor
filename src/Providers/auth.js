@@ -13,6 +13,7 @@ export function AuthProvider({children}){
     const isLogin = localStorage.getItem('@MinLouvor:user');
     if(isLogin){
       setCurrentUser(true)
+      if(JSON.parse(isLogin).userFunction === "leader") setIsLeader(true)
     }
   },[])
   

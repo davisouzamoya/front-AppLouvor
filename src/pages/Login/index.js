@@ -39,7 +39,7 @@ function Login(){
         abortEarly:false,
       })
     
-      handleLogin({email: data.email,password: data.password})
+      handleLogin({email: data.email.toLowerCase(),password: data.password})
     }catch (err){
       const validationErrors = {};
 

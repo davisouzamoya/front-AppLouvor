@@ -79,8 +79,8 @@ function Register(){
       data.active = true
       data.nascimento = data.nascimento.replaceAll('-','')
       data.phone = data.phone.replaceAll('(','').replaceAll(')','').replaceAll(' ','').replaceAll('-','')
-      await backEnd.post("users", data);
-      alert('Cadastro Realizado com Sucesso!!!')
+      const  response = await backEnd.post("users", data);
+      alert(response.data)
       history.push("/");
     }catch (err){
       const validationErrors = {};
@@ -91,7 +91,7 @@ function Register(){
         });
         formRef.current.setErrors(validationErrors);
       }
-
+      alert('Erro no cadastro, validar os dados informados')
     }
   }
   return(
@@ -152,7 +152,7 @@ function Register(){
               <div>
                 <Input
                   type="date"
-                  placeholder="00/00/000"
+                  placeholder="Nascimento"
                   name='nascimento'
                   Icon={AiOutlineCalendar}
                   style='left'

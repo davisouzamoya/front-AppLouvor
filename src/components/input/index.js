@@ -94,7 +94,7 @@ function Input({
               onKeyUp={handleKeyUp}
               onChange={inputFilter}
             />
-            {Icon && <Icon size={20}/>}
+            {Icon && <Icon onClick={e => changeInput(inputRef)} size={20}/>}
           </div>
           )}
         </fieldset>

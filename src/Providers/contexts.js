@@ -29,6 +29,7 @@ export function Provider({children}){
 
   async function seachLyrics(artist){
     artist = artist.replaceAll(' ','-').toLowerCase()
+    artist = removeAcento(artist)
     const response = await secondURL.get(`/${artist}/index.js`)
 
     {response.data.artist.lyrics.item.map(data =>(
@@ -87,6 +88,17 @@ export function Provider({children}){
     }
 }
 
+  function removeAcento(text){       
+    text = text.toLowerCase();                                                         
+    text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a');
+    text = text.replace(new RegExp('[ÉÈÊ]','gi'), 'e');
+    text = text.replace(new RegExp('[ÍÌÎ]','gi'), 'i');
+    text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
+    text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
+    text = text.replace(new RegExp('[Ç]','gi'), 'c');
+    return text;                 
+  }
+
   return (
     <ProviderContext.Provider value={{
       loadingMusic,
@@ -99,7 +111,10 @@ export function Provider({children}){
       urlVideo,
       lyrics,
       musicList,
-      musicApproval
+      musicApproval,
+      setValue,
+      setUrlVideo,
+      setLyrics
     }}>
       {children}
     </ProviderContext.Provider>
