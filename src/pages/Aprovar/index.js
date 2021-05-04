@@ -30,12 +30,19 @@ function Aprovar(){
     setArtist(params.artist)
   },[params.artist])
 
+  function handleSubmit(data) {
+    
+  }
+
   
   return (
     <div>
     <Header/>
     <Profile>
-      <Form ref={formRef}>
+      <Form 
+        ref={formRef}
+        onSubmit={handleSubmit}
+        >
         <header>
           <img src={`https://www.vagalume.com.br/${artist}/images/${artist}.jpg`}/>
           <h1>{title}</h1>
@@ -55,6 +62,7 @@ function Aprovar(){
               name='reprovar'
               data={params}
               lyrinc={lyrinc}
+              type="submit"
             >
               Reprovar
             </Button>
@@ -63,6 +71,7 @@ function Aprovar(){
               name='aprovar'
               data={params}
               lyrinc={lyrinc}
+              type="submit"
             >
               Aprovar
             </Button>

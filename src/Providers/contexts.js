@@ -28,6 +28,7 @@ export function Provider({children}){
   }
 
   async function seachLyrics(artist){
+    debugger
     artist = artist.replaceAll(' ','-').toLowerCase()
     artist = removeAcento(artist)
     const response = await secondURL.get(`/${artist}/index.js`)
@@ -41,6 +42,7 @@ export function Provider({children}){
   }
 
   async function seachVideo(e){
+    debugger
     setTitle(e.label)
     if(e){
       const idChannel = await seachVideoApi.get(`youtube/v3/search`,{

@@ -22,15 +22,16 @@ function RegisterMusic() {
     lyrics,
     setValue,
     setUrlVideo,
-    setLyrics
+    setLyrics,
+    seachLyrics
    } = useContext(ProviderContext)
-   const { isLeader } = useContext(AuthContext)
-  const formRef = useRef(null)
-  let history = useHistory();
+   const { isLeader,token } = useContext(AuthContext)
+   const formRef = useRef(null)
+   let history = useHistory();
+        
     async function handleRegister(data,{ reset }){
       debugger
-      try{
-        debugger
+      try{  
         const dataApi = {
           valid:isLeader ? isLeader :false,
           artist,
@@ -38,29 +39,45 @@ function RegisterMusic() {
           url:`https://www.youtube.com/embed/${urlVideo}`,
           lyrics:[data.textArea]
         }
-        const  response = await backEnd.post("music",dataApi);
+  
+        const headers = { 
+          'Authorization': `Bearer ${token}`
+      };
+        const response = await backEnd.post("music",dataApi,{headers});
         alert(response.data)
         setValue('')
         setUrlVideo('')
         setLyrics('')
-        history.push("/list");
+        formRef.current.reset()
       }catch(err){
         console.log(err)
         alert(`Erro no cadastro`)
       }
-    }  
+    } 
+
+    const handleKeyDown = (event) => {
+      if(event.key === 'Enter' && event.shiftKey === false) {
+        debugger
+        seachLyrics(formRef.current.getData().seachArtist)
+        event.preventDefault();
+      }
+    };
 
   return (
     <div>
       <Header/>
       <Container>
-        <Form ref={formRef} onSubmit={handleRegister}>
+        <Form ref={formRef} 
+          onSubmit={handleRegister}
+          onKeyDown={e => { handleKeyDown(e)}}
+          >
           <header>
             <Input 
               type='text'
               name='seachArtist'
               placeholder="Artista"
               Icon={BsSearch}
+
             />
           </header>
           
@@ -94,7 +111,10 @@ function RegisterMusic() {
             <Button 
               type="submit"
               width='98'
-              >Cadastrar</Button>
+              onClick={e => this.teste(e)}
+              >
+                Cadastrar
+              </Button>
           }
           </section>
         </Form>

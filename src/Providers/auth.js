@@ -8,12 +8,14 @@ export function AuthProvider({children}){
   const { loadingMusic } = useContext(ProviderContext)
   const [currentUser, setCurrentUser] = useState(null);
   const [isLeader,setIsLeader] = useState(null);
+  const [token, setToken] = useState('')
 
   useEffect(()=>{
     const isLogin = localStorage.getItem('@MinLouvor:user');
     if(isLogin){
       setCurrentUser(true)
       if(JSON.parse(isLogin).userFunction === "leader") setIsLeader(true)
+      setToken(JSON.parse(isLogin).token);
     }
   },[])
   
@@ -35,6 +37,7 @@ export function AuthProvider({children}){
       localStorage.setItem("@MinLouvor:user", JSON.stringify(user));
 
       loadingMusic()
+      setToken(user.token);
       setCurrentUser(true);
     }catch (err){
       setCurrentUser(null);
@@ -54,7 +57,8 @@ export function AuthProvider({children}){
       handleLogin,
       currentUser,
       signOut,
-      isLeader
+      isLeader,
+      token
     }}>
       {children}
     </AuthContext.Provider>

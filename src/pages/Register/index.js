@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import Input from '../../components/input/index'
 import Select from '../../components/Select/index'
 import Button from '../../components/Button/index'
@@ -13,6 +13,7 @@ import { HiMusicNote } from 'react-icons/hi';
 import { BsListNested } from 'react-icons/bs';
 import { IoMdContact } from 'react-icons/io';
 import { FiUsers } from 'react-icons/fi';
+
 
 import {backEnd} from '../../service/api';
 
@@ -79,6 +80,7 @@ function Register(){
       data.active = true
       data.nascimento = data.nascimento.replaceAll('-','')
       data.phone = data.phone.replaceAll('(','').replaceAll(')','').replaceAll(' ','').replaceAll('-','')
+      data.email = data.email.toLowerCase()
       const  response = await backEnd.post("users", data);
       alert(response.data)
       history.push("/");
@@ -91,7 +93,6 @@ function Register(){
         });
         formRef.current.setErrors(validationErrors);
       }
-      alert('Erro no cadastro, validar os dados informados')
     }
   }
   return(

@@ -21,7 +21,7 @@ function List() {
       <Container>
         <Form>
           <Input
-            placeholder="Buscar música"
+            placeholder="Buscar artista"
             Icon={FiFilter}
             name="buscar"
             id='listMusic'

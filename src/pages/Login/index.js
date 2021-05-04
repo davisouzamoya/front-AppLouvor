@@ -93,14 +93,11 @@ function Login(){
         </div>
         <footer>
           <span>
-          <Link to={`/recovery`}>
+          {/* <Link to={`/recovery`}>
               <div>
                   <span>Esqueceu sua senha?</span>
               </div>
-            </Link>
-            <a>
-              
-            </a>
+            </Link> */}
           </span>
           <span>
               Não tem uma conta? 

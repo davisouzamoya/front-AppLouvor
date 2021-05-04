@@ -28,13 +28,12 @@ function Input({
     setIsFocused(true)
   }
 
-  function changeInput(e){
-    debugger
+  function changeInput(){
     if(name === 'seachArtist'){
-      seachLyrics(e.current.value)
+      seachLyrics(inputRef.current.value)
     }
 
-    if(e.current.value){
+    if(inputRef.current.value){
       setIsFocused(true)
     }else{
       setIsFocused(false)
@@ -53,9 +52,14 @@ function Input({
   },[])
 
   function inputFilter(){
-    // if(inputRef.current.value){
       filterMusic(inputRef.current.value,id)
-    // }
+  }
+
+  function keyPress(key){
+    debugger
+    if(key.key === "Enter" && name === 'seachArtist'){
+      changeInput()
+    }
   }
 
   return (
@@ -81,6 +85,7 @@ function Input({
                 ref={inputRef}
                 onKeyUp={handleKeyUp}
                 onChange={inputFilter}
+                onKeyPress={e => keyPress(e)}
               />
             </div>
           ):(
@@ -93,6 +98,7 @@ function Input({
               ref={inputRef}
               onKeyUp={handleKeyUp}
               onChange={inputFilter}
+              onKeyPress={e => keyPress(e)}
             />
             {Icon && <Icon onClick={e => changeInput(inputRef)} size={20}/>}
           </div>

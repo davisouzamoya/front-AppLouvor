@@ -43,7 +43,9 @@ function Profiles(){
     <div>
     <Header/>
     <Profile>
-      <Form ref={formRef}>
+      <Form 
+        ref={formRef}
+        >
       <header>
         <img src={`https://www.vagalume.com.br/${artist}/images/${artist}.jpg`}/>
         <h1>{title}</h1>
@@ -57,12 +59,11 @@ function Profiles(){
       }
       </section>
       <footer>
-        <Button
+        {/* <Button
           width='98'
-          // func={GenerateTxt}
         >
           Gerar PP
-        </Button>
+        </Button> */}
       </footer>
       </Form>
     </Profile>
