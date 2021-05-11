@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {seachVideoApi,secondURL,base} from '../service/api';
 import { backEnd } from '../service/api'
 export const ProviderContext = React.createContext({})
@@ -17,7 +17,13 @@ export function Provider({children}){
 
   async function loadingMusic() {
     try{
-      const response = await backEnd.get("music");
+      debugger
+      let token = JSON.parse(localStorage.getItem("@MinLouvor:user")).token
+      const response = await backEnd.get("music",{
+        headers:{
+          'Authorization': `Bearer ${token}`
+        }
+      });
       setMusicTrue(response.data.filter(data => data.valid))
       setMusicList(response.data.filter(data => data.valid))
       setMusicFalse(response.data.filter(data => data.valid === false))
@@ -88,7 +94,8 @@ export function Provider({children}){
         setMusicList(musicasFiltradas)
       }
     }
-}
+  }
+  
 
   function removeAcento(text){       
     text = text.toLowerCase();                                                         
@@ -98,6 +105,8 @@ export function Provider({children}){
     text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
     text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
     text = text.replace(new RegExp('[Ç]','gi'), 'c');
+    text = text.replace(new RegExp('[!@#$%^&*(),.<>;:]','gi'), '');
+    text = text.replace(new RegExp('[_]','gi'), ' ');
     return text;                 
   }
 

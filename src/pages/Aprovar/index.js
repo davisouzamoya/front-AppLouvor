@@ -4,6 +4,7 @@ import { Profile } from "./style";
 import { backEnd } from "../../service/api";
 import Button from '../../components/Button/index'
 import Textarea from '../../components/Textarea/index'
+import { AuthContext } from '../../Providers/auth';
 import { useRouteMatch } from 'react-router-dom'
 import { Form } from '@unform/web'
 
@@ -11,6 +12,7 @@ function Aprovar(){
   const [title,setTitle] = useState()
   const [artist,setArtist] = useState()
   const [lyrinc,setLyrinc] = useState()
+  const { token } = useContext(AuthContext)
   const { params } = useRouteMatch()
   const formRef = useRef(null)
   
@@ -18,7 +20,8 @@ function Aprovar(){
     backEnd.get('music',{
       headers:{
         artist:params.artist,
-        title:params.music
+        title:params.music,
+        'Authorization': `Bearer ${token}`
       }
   }).then(response => {
     let data = response.data 
@@ -51,7 +54,7 @@ function Aprovar(){
           {lyrinc &&
             <Textarea
               name='letraMusica'
-              value={lyrinc}
+              defaultValue={lyrinc}
             /> 
           }
         </section>
@@ -61,7 +64,6 @@ function Aprovar(){
               width='49'
               name='reprovar'
               data={params}
-              lyrinc={lyrinc}
               type="submit"
             >
               Reprovar
@@ -70,7 +72,7 @@ function Aprovar(){
               width='49'
               name='aprovar'
               data={params}
-              lyrinc={lyrinc}
+              lyrinc={formRef}
               type="submit"
             >
               Aprovar

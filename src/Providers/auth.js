@@ -36,9 +36,9 @@ export function AuthProvider({children}){
 
       localStorage.setItem("@MinLouvor:user", JSON.stringify(user));
 
-      loadingMusic()
       setToken(user.token);
       setCurrentUser(true);
+      loadingMusic()
     }catch (err){
       setCurrentUser(null);
       alert('Validar Email e Senha!')

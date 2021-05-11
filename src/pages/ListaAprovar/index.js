@@ -16,11 +16,21 @@ function ListaAprovar() {
   useEffect(()=>{
     loadingMusic()
   },[])
+
+  const handleKeyDown = (event) => {
+    if(event.key === 'Enter' && event.shiftKey === false) {
+      event.preventDefault();
+    }
+  };
+
+  
   return (
     <div>
       <Header/>
       <Container>
-        <Form>
+        <Form
+          onKeyDown={e => { handleKeyDown(e)}}
+        >
           <Input
             placeholder="Buscar música"
             Icon={FiFilter}

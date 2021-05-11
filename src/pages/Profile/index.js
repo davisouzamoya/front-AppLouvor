@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Header from '../../components/header/index'
 import { Profile } from "./style";
 import { backEnd } from "../../service/api";
@@ -6,18 +6,22 @@ import Button from '../../components/Button/index'
 import Textarea from '../../components/Textarea/index'
 import { Form } from '@unform/web'
 import { useRouteMatch } from 'react-router-dom'
+import { AuthContext } from '../../Providers/auth';
 
 function Profiles(){
   const [title,setTitle] = useState()
   const [artist,setArtist] = useState()
   const [lyrinc,setLyrinc] = useState()
   const { params } = useRouteMatch()
+  const { token } = useContext(AuthContext)
   const formRef = useRef(null)
+
   useEffect(() =>{
     backEnd.get('music',{
       headers:{
         artist:params.artist,
-        title:params.music
+        title:params.music,
+        'Authorization': `Bearer ${token}`
       }
   }).then(response => {
     let data = response.data 
@@ -53,7 +57,7 @@ function Profiles(){
       <section>
         {lyrinc &&
         <Textarea
-          value={lyrinc}
+          defaultValue={lyrinc}
           name='letra'
         />
       }

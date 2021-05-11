@@ -1,4 +1,4 @@
-import React,{useContext, useRef} from 'react';
+import React,{useContext, useRef, useState} from 'react';
 import {backEnd} from '../../service/api'
 import Header from '../../components/header/index'
 import Input from '../../components/input/index'
@@ -27,6 +27,7 @@ function RegisterMusic() {
    } = useContext(ProviderContext)
    const { isLeader,token } = useContext(AuthContext)
    const formRef = useRef(null)
+   const [inputArtist,setInputArtist] = useState('')
    let history = useHistory();
         
     async function handleRegister(data,{ reset }){
@@ -62,6 +63,7 @@ function RegisterMusic() {
         event.preventDefault();
       }
     };
+    
 
   return (
     <div>
@@ -77,18 +79,18 @@ function RegisterMusic() {
               name='seachArtist'
               placeholder="Artista"
               Icon={BsSearch}
-
+              value={e => setInputArtist(e)}
             />
           </header>
           
           <section>
-          {value &&
+          {value &&(
             <Select
               name="seachLyrics"
               options={value}
               onChange={(e) =>{seachVideo(e)}}
             />
-          }  
+            )}  
 
           {urlVideo &&
             <iframe 
@@ -101,7 +103,7 @@ function RegisterMusic() {
             lyrics.mus.map(data =>( 
               <Textarea
                 key={data.id}
-                value={data.text}
+                defaultValue={data.text}
                 name='textArea'
               />
             ))

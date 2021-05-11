@@ -15,11 +15,19 @@ function List() {
     loadingMusic()
   },[])
 
+  const handleKeyDown = (event) => {
+    if(event.key === 'Enter' && event.shiftKey === false) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <div>
       <Header/>
       <Container>
-        <Form>
+        <Form
+          onKeyDown={e => { handleKeyDown(e)}}
+        >
           <Input
             placeholder="Buscar artista"
             Icon={FiFilter}

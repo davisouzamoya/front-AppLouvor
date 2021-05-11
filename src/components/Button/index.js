@@ -24,12 +24,13 @@ function Button({
         'Authorization': `Bearer ${token}`
      };
 
+     debugger
      const dataApi = {
         artist:data.artist,
         title:data.music,
         approver:JSON.parse(datasUser).name,
         valid:true,
-        lyrics:[lyrinc]
+        lyrics:[lyrinc.current.getData().letraMusica]
       }
 
       const  response = await backEnd.put("music",dataApi,{headers});
@@ -40,25 +41,7 @@ function Button({
     }
   }
 
-  async function disapprove(){
-    try{
-        const response = await backEnd.delete("music",{
-          headers:{
-            artist:data.artist,
-            title:data.music,
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        alert(response.data)
-        history.push('/listaAprovar');
-    }catch(err){
-      alert(`Erro no cadastro`)
-    }
-  }
-
-
 function actionButton(){
-  console.log(data)
   debugger
   if(name === 'aprovar'){
       approve()

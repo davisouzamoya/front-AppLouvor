@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useField } from '@unform/core'
 import { ContainerText } from "./style";
 
-function TextArea({value,name}){
-  const {fieldName,registerField,defaultValue,error} = useField(name)
+function TextArea({defaultValue,name}){
+  const {fieldName,registerField,error} = useField(name)
   const inputRef = useRef(null);
 
   useEffect(()=>{
@@ -19,7 +19,7 @@ function TextArea({value,name}){
       <ContainerText
         ref={inputRef}
       >
-        {value}
+        {defaultValue}
       </ContainerText>
     </>
   );
