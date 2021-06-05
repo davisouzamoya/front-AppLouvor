@@ -1,25 +1,27 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useRef } from 'react'
 import Input from '../../components/input/index'
 import Select from '../../components/Select/index'
 import Button from '../../components/Button/index'
 import Header from '../../components/header/index'
+import Loading from '../../components/Loading';
 import { Container } from "./style";
 import * as Yup from 'yup';
 import { Form } from '@unform/web'
-import { useHistory } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 import { AiOutlineMail,AiOutlineCalendar } from 'react-icons/ai';
 import { RiLockPasswordLine,RiContactsBook2Line } from 'react-icons/ri';
 import { HiMusicNote } from 'react-icons/hi';
 import { BsListNested } from 'react-icons/bs';
 import { IoMdContact } from 'react-icons/io';
 import { FiUsers } from 'react-icons/fi';
-
-
-import {backEnd} from '../../service/api';
+import { ProviderContext } from '../../Providers/contexts';
+import { AuthContext } from '../../Providers/auth';
 
 function Register(){
   const formRef = useRef(null)
   let history = useHistory();
+  const { registerUser,currentUser } = useContext(AuthContext)
+  const { loading } = useContext(ProviderContext)
   const optionsIntrumentos = [
     { value: "guitarra", label: "Guitarra" },
     { value: "violao",   label: "Violão" },
@@ -81,9 +83,8 @@ function Register(){
       data.nascimento = data.nascimento.replaceAll('-','')
       data.phone = data.phone.replaceAll('(','').replaceAll(')','').replaceAll(' ','').replaceAll('-','')
       data.email = data.email.toLowerCase()
-      const  response = await backEnd.post("users", data);
-      alert(response.data)
-      history.push("/");
+      
+      registerUser(data)
     }catch (err){
       const validationErrors = {};
 
@@ -95,99 +96,111 @@ function Register(){
       }
     }
   }
+
+  if(currentUser){
+    return <Redirect to="/registerMusic" />;
+  }
+
+
   return(
     <>
+    {loading ?
+      (
+        <Loading/>
+      ):(
+        <>
       <Header/>
-      <Container>
-        <Form 
-          ref={formRef} 
-          onSubmit={handleSubmit}
-          >
-          <div>
-            <header>
-              <IoMdContact size={150}/>
-            </header>
-            <section>
-              <div>
-                <Input
-                  placeholder="Nome e Sobrenome"
-                  name='nome'
-                  Icon={BsListNested}
-                  style='left'
-                />
-              </div>
-              <div>
-                <Input
-                  placeholder="Email"
-                  name='email'
-                  Icon={AiOutlineMail}
-                  style='left'
-                />
-              </div>
-              <div>
-                <Select
-                  Icon={HiMusicNote}
-                  options={optionsIntrumentos}
-                  name='instrumento'
-                  placeholder='Instrumento'
-                />
-              </div>
-              <div>
-              </div>
-              <div>
-                <Select
-                  Icon={FiUsers}
-                  options={optionFuncao}
-                  name='funcao' 
-                  placeholder='Função'
-                />
-              </div>
-              <div>
-                <Input
-                  placeholder="Contato"
-                  name='phone'
-                  Icon={RiContactsBook2Line}
-                  style='left'
-                />
-              </div>
-              <div>
-                <Input
-                  type="date"
-                  placeholder="Nascimento"
-                  name='nascimento'
-                  Icon={AiOutlineCalendar}
-                  style='left'
-                />
-              </div>
-              <div>
-                <Input
-                  type='password'
-                  name='password'
-                  placeholder="Senha"
-                  Icon={RiLockPasswordLine}
-                  style='left'
-                />
-              </div>
-              <div>
-                <Input
-                  type='password'
-                  name='confirmarSenha'
-                  placeholder="Confirmar Senha"
-                  Icon={RiLockPasswordLine}
-                  style='left'
-                />
-              </div>
-            </section>
-          </div>
-          <footer>
-          <Button>
-              Cadastrar-se
-          </Button>          
-        </footer>
-        </Form>
-      </Container>
+        <Container>
+          <Form 
+            ref={formRef} 
+            onSubmit={handleSubmit}
+            >
+            <div>
+              <header>
+                <IoMdContact size={150}/>
+              </header>
+              <section>
+                <div>
+                  <Input
+                    placeholder="Nome e Sobrenome"
+                    name='nome'
+                    Icon={BsListNested}
+                    style='left'
+                  />
+                </div>
+                <div>
+                  <Input
+                    placeholder="Email"
+                    name='email'
+                    Icon={AiOutlineMail}
+                    style='left'
+                  />
+                </div>
+                <div>
+                  <Select
+                    Icon={HiMusicNote}
+                    options={optionsIntrumentos}
+                    name='instrumento'
+                    placeholder='Instrumento'
+                  />
+                </div>
+                <div>
+                </div>
+                <div>
+                  <Select
+                    Icon={FiUsers}
+                    options={optionFuncao}
+                    name='funcao' 
+                    placeholder='Função'
+                  />
+                </div>
+                <div>
+                  <Input
+                    placeholder="Contato"
+                    name='phone'
+                    Icon={RiContactsBook2Line}
+                    style='left'
+                  />
+                </div>
+                <div>
+                  <Input
+                    type="date"
+                    placeholder="Nascimento"
+                    name='nascimento'
+                    Icon={AiOutlineCalendar}
+                    style='left'
+                  />
+                </div>
+                <div>
+                  <Input
+                    type='password'
+                    name='password'
+                    placeholder="Senha"
+                    Icon={RiLockPasswordLine}
+                    style='left'
+                  />
+                </div>
+                <div>
+                  <Input
+                    type='password'
+                    name='confirmarSenha'
+                    placeholder="Confirmar Senha"
+                    Icon={RiLockPasswordLine}
+                    style='left'
+                  />
+                </div>
+              </section>
+            </div>
+            <footer>
+            <Button>
+                Cadastrar-se
+            </Button>          
+          </footer>
+          </Form>
+        </Container>
+        </>
+      )}
     </>
-    
   )
 }
 

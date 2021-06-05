@@ -6,6 +6,7 @@ import { Form } from '@unform/web'
 import Button from '../../components/Button/index'
 import Textarea from '../../components/Textarea/index'
 import Select from '../../components/Select';
+import Loading from '../../components/Loading';
 import { useHistory } from 'react-router-dom'
 import { Container, } from "./style";
 import { BsSearch } from 'react-icons/bs';
@@ -27,6 +28,7 @@ function RegisterMusic() {
    } = useContext(ProviderContext)
    const { isLeader,token } = useContext(AuthContext)
    const formRef = useRef(null)
+   const [loading, setLoading] = useState(false);
    const [inputArtist,setInputArtist] = useState('')
    let history = useHistory();
         
@@ -73,6 +75,7 @@ function RegisterMusic() {
           onSubmit={handleRegister}
           onKeyDown={e => { handleKeyDown(e)}}
           >
+            {/* <Loading/> */}
           <header>
             <Input 
               type='text'

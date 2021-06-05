@@ -16,7 +16,6 @@ function Button({
   const datasUser = localStorage.getItem('@MinLouvor:user');
   const { token } = useContext(AuthContext)
   let history = useHistory();
-  debugger
   async function approve(){
     try{
 
@@ -24,7 +23,6 @@ function Button({
         'Authorization': `Bearer ${token}`
      };
 
-     debugger
      const dataApi = {
         artist:data.artist,
         title:data.music,
@@ -41,8 +39,24 @@ function Button({
     }
   }
 
+  async function disapprove(){
+    try{
+
+      const headers = { 
+        'Authorization': `Bearer ${token}`,
+        'artist':data.artist,
+        'title':data.music,
+     };
+
+      const  response = await backEnd.delete("music",{headers});
+      alert(response.data)
+      history.push('/listaAprovar');
+    }catch(err){
+      alert(`Erro no cadastro`)
+    }
+  }
+
 function actionButton(){
-  debugger
   if(name === 'aprovar'){
       approve()
   }else if(name === 'reprovar'){

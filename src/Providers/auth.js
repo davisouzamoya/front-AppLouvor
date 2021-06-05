@@ -1,11 +1,12 @@
 import React,{useCallback, useContext, useEffect, useState} from 'react'
+import { useHistory } from 'react-router';
 import {backEnd} from '../service/api';
 import { ProviderContext } from './contexts';
 export const AuthContext = React.createContext({})
 
 
 export function AuthProvider({children}){
-  const { loadingMusic } = useContext(ProviderContext)
+  const { loadingMusic,setLoading } = useContext(ProviderContext)
   const [currentUser, setCurrentUser] = useState(null);
   const [isLeader,setIsLeader] = useState(null);
   const [token, setToken] = useState('')
@@ -39,9 +40,27 @@ export function AuthProvider({children}){
       setToken(user.token);
       setCurrentUser(true);
       loadingMusic()
+      setLoading(false);
+      
     }catch (err){
       setCurrentUser(null);
+      setLoading(false);
       alert('Validar Email e Senha!')
+    }
+  }, []);
+
+  const registerUser = useCallback(async (data) => {
+    debugger;
+    try{
+      setLoading(true);
+ 
+      const  response = await backEnd.post("users", data);
+      handleLogin({email: data.email.toLowerCase(),password: data.password})
+
+      setLoading(false);
+    }catch (err){
+      setLoading(false);
+      alert('Usuario nao cadastrado!')
     }
   }, []);
 
@@ -58,7 +77,8 @@ export function AuthProvider({children}){
       currentUser,
       signOut,
       isLeader,
-      token
+      token,
+      registerUser
     }}>
       {children}
     </AuthContext.Provider>

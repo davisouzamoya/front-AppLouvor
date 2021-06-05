@@ -11,6 +11,7 @@ export function Provider({children}){
   const [lyrics,setLyrics] = useState('')
   const [musicList,setMusicList] = useState('')
   const [musicTrue,setMusicTrue] = useState([])
+  const [loading, setLoading] = useState(false);
   const [musicFalse,setMusicFalse] = useState([])
   const [musicApproval,setMusicApproval] = useState('')
   var optionsLyrics = [];
@@ -125,7 +126,9 @@ export function Provider({children}){
       musicApproval,
       setValue,
       setUrlVideo,
-      setLyrics
+      setLyrics,
+      loading, 
+      setLoading
     }}>
       {children}
     </ProviderContext.Provider>

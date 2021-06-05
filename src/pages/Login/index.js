@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState } from 'react'
 import Input from '../../components/input/index'
 import Logo from '../../assets/images/logo.png'
 import Button from '../../components/Button/index'
+import Loading from '../../components/Loading';
 import * as Yup from 'yup';
 import { Container } from "./style";
 import { Form } from '@unform/web'
@@ -10,6 +11,7 @@ import { Link } from 'react-router-dom'
 import { BiUser } from 'react-icons/bi';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { AuthContext } from '../../Providers/auth';
+import { ProviderContext } from '../../Providers/contexts';
 
 function Login(){
   const [email,setEmail] = useState()
@@ -17,6 +19,7 @@ function Login(){
   const [isFilled,setIsFilled] = useState(false)
   const [isinputsComplete,setIsInputsComplete] = useState(false)
   const { handleLogin,currentUser } = useContext(AuthContext)
+  const { loading } = useContext(ProviderContext)
   const formRef = useRef(null)
 
   async function handleSubmit(data,{ reset }){    
@@ -42,7 +45,6 @@ function Login(){
       handleLogin({email: data.email.toLowerCase(),password: data.password})
     }catch (err){
       const validationErrors = {};
-
       if (err instanceof Yup.ValidationError) {
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
@@ -59,54 +61,61 @@ function Login(){
 
   return(
     <>
-      <Container>
-        <header>
-          <img src={Logo} width='150px' height='150px'/>
-        </header>
-        <div>
-          <Form 
-            ref={formRef} 
-            onSubmit={handleSubmit}
-            >
-            <Input
-              placeholder="E-mail"
-              type="email"
-              name="email"
-              Icon={BiUser}
-              style='rigth'
-            />
-            <Input
-              placeholder="Senha"
-              type="password"
-              name='password'
-              Icon={RiLockPasswordLine}
-              style='rigth'
-            />
-            <Button>
-              acessar
-            </Button>
-            {
-              isFilled && 
-              <span>campos nao preenchidos</span>
-            }
-          </Form>
-        </div>
-        <footer>
-          <span>
-          {/* <Link to={`/recovery`}>
+    {loading ?
+      (
+        <Loading/>
+      ):(
+        <Container>    
+          <header>
+            <img src={Logo} width='150px' height='150px'/>
+          </header>
               <div>
-                  <span>Esqueceu sua senha?</span>
+                <Form 
+                  ref={formRef} 
+                  onSubmit={handleSubmit}
+                  >
+                    
+                  <Input
+                    placeholder="E-mail"
+                    type="email"
+                    name="email"
+                    Icon={BiUser}
+                    style='rigth'
+                  />
+                  <Input
+                    placeholder="Senha"
+                    type="password"
+                    name='password'
+                    Icon={RiLockPasswordLine}
+                    style='rigth'
+                  />
+                  <Button>
+                    acessar
+                  </Button>
+                  {
+                    isFilled && 
+                    <span>campos nao preenchidos</span>
+                  }
+                </Form>
               </div>
-            </Link> */}
-          </span>
-          <span>
-              Não tem uma conta? 
-              <Link to={`/register`}>
-              Cadastre-se
-            </Link>
-          </span>
-        </footer>
-      </Container>
+              <footer>
+                <span>
+                {/* <Link to={`/recovery`}>
+                    <div>
+                        <span>Esqueceu sua senha?</span>
+                    </div>
+                  </Link> */}
+                </span>
+                <span>
+                    Não tem uma conta? 
+                    <Link to={`/register`}>
+                    Cadastre-se
+                  </Link>
+                </span>
+              </footer>
+          </Container>
+      )
+    }
     </>
     
   )
