@@ -60,7 +60,7 @@ function Header() {
         }
       </header>
         <div>
-          <h1>Min. Louvor</h1>
+          <h1>Ministério de Louvor</h1>
         </div>
     </Container>
     </>

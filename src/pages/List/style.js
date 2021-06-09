@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     margin-top:120px;
-
+    
+    
   ul {
     margin: 0px; 
     padding:0px;
@@ -24,7 +25,6 @@ export const Container = styled.div`
       margin-top:15px;
 
       img{
-      margin-left:5px;
       grid-area: image;
       width:50px;
       height:50px;
@@ -34,6 +34,7 @@ export const Container = styled.div`
       div{
         grid-area: infos;
         display:grid;
+        color:white;
       }
 
       div > span {

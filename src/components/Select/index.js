@@ -34,31 +34,34 @@ function componetSelect({Icon,name, options,placeholder, ...rest}){
   const customStyles = {
     container: (provided, state) =>({
       ...provided,
-      width:'92vw',
+      width:'97vw',
+      
     }),
     input: (provided, state) => ({
       ...provided,
-      padding: 13,
-    }),
+      // padding: 13,
+    })
+    ,
     valueContainer: (provided, state) => ({
       ...provided,
-      background:'#56CCF2',
+    }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      color:'white',
     }),
     indicatorsContainer: (provided, state) => ({
       ...provided,
-      color:'#56CCF2',
     }),
     clearIndicator: (provided, state) => ({
       ...provided,
-      color:'#666360',
+      color:'white',
     }),
     indicatorSeparator: (provided, state) => ({
       ...provided,
-      background:'#666360',
     }),
     control: (provided, state) => ({
       ...provided,
-      background:'#56CCF2',
+      background:'transparent',
       border: '0px',
       boxShadow: state.isFocused ? 0 : 0,
       '&:hover': {
@@ -67,10 +70,28 @@ function componetSelect({Icon,name, options,placeholder, ...rest}){
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
-      color:'#666360',
-    }),option: (provided, state) => ({
+      color:'white',
+      background:'rgba(121,121,121,0.1)'
+    }),
+    menu: (provided, state) => ({
+      ...provided,
+     background:'rgba(56, 104, 148) '
+   }),
+    menuList: (provided, state) => ({
+      ...provided,
+     background:'transparent'
+   }),
+    option: (provided, state) => ({
       ...provided,
       width:'98%',
+      color:'white',
+      '&:hover': {
+        color: state.isFocused ? 'black' : 'white'
+     }
+    })
+    ,placeholder: (provided, state) => ({
+      ...provided,
+      color:'white'
     })
   }
 
@@ -86,7 +107,8 @@ function componetSelect({Icon,name, options,placeholder, ...rest}){
         <div>
           {Icon && <Icon size={20}/>}
         </div>
-           <Select
+        {/* <div> */}
+          <Select
               ref={selectRef}
               closeMenuOnSelect={true}
               options={options}
@@ -96,6 +118,7 @@ function componetSelect({Icon,name, options,placeholder, ...rest}){
               placeholder={placeholder}
             >
             </Select>
+        {/* </div>  */}
        </section> 
        {error &&
             <span>{error}</span>

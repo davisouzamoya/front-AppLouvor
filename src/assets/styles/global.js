@@ -8,8 +8,12 @@ export default createGlobalStyle`
     }
 
   body {
-    background: #F0F2F5 ;
-    font-family:'Sen',sans-serif;
+    background: rgba(31,78,120,255);
+    font-family: 'Roboto', sans-serif;
+    margin:0; 
+    padding:0;
+    margin-left: 7px;
+    margin-right: 10px;
   }
 
   textarea{

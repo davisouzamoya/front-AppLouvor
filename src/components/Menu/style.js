@@ -32,13 +32,13 @@ export const MySection = styled.section`
         padding: 8px 8px 8px 32px;
         text-decoration: none;
         font-size: 25px;
-        color: #fff;
+        color: red;
         display: block;
         transition: 0.3s;
       }
 
       a:hover {
-        color: #f1f1f1;
+        color: rgba(31,78,120,255);
       }
 
       .closebtn {

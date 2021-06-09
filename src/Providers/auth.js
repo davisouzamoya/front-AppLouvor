@@ -6,7 +6,7 @@ export const AuthContext = React.createContext({})
 
 
 export function AuthProvider({children}){
-  const { loadingMusic,setLoading } = useContext(ProviderContext)
+  const { loadingMusic,setLoading,setLyrics,setValue,setUrlVideo } = useContext(ProviderContext)
   const [currentUser, setCurrentUser] = useState(null);
   const [isLeader,setIsLeader] = useState(null);
   const [token, setToken] = useState('')
@@ -66,7 +66,10 @@ export function AuthProvider({children}){
 
   const signOut = useCallback(() => {
     localStorage.removeItem("@MinLouvor:user");
-
+    
+    setLyrics('')
+    setValue('')
+    setUrlVideo('')
     setCurrentUser(false);
   }, []);
 

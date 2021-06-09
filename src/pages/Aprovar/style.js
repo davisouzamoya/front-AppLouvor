@@ -8,9 +8,16 @@ export const Profile = styled.div`
       display:grid;
       justify-content:center;
       text-align:center;
+      
       img{  
         height:180px;
         border-radius:50%;
+      }
+
+      h1{
+        color:white;
+        font-family: Roboto;
+        font-weight: 400;
       }
   }
   

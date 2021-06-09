@@ -7,17 +7,25 @@ export const Container = styled.div`
     padding:0;
     display: grid;
     grid-template-columns: auto auto;     
-    background-color:#56CCF2;
+    background-color:rgba(31,78,120,255) ;
     align-items:center;
     left:0;
     top:0;
     right:0;
     height:85px;
     z-index: 1;
+
+    div{
+      color:white;
+      font-family: Roboto;
+      /* font-weight: 500; */
+    }
 `;
 
 export const MyAnchor = styled.a`
     cursor:pointer;
+    color:white;
+  
 `;
 
 export const MySection = styled.section`
@@ -27,10 +35,12 @@ export const MySection = styled.section`
       z-index: 1;
       top: 0;
       left: 0;
-      background-color: ${shade(0.2, "#56CCF2")};
+      background-color: ${shade(0.1, "rgba(31,78,120,255)")};
       overflow-x: hidden;
       transition: 0.5s;
       padding-top: 60px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
 
       a{
         padding: 8px 8px 8px 32px;

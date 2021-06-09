@@ -67,7 +67,7 @@ function Login(){
       ):(
         <Container>    
           <header>
-            <img src={Logo} width='150px' height='150px'/>
+            <img src={Logo} width='190px' height='190px'/>
           </header>
               <div>
                 <Form 
@@ -109,7 +109,9 @@ function Login(){
                 <span>
                     Não tem uma conta? 
                     <Link to={`/register`}>
-                    Cadastre-se
+                      <p>
+                        Cadastre-se
+                      </p>
                   </Link>
                 </span>
               </footer>

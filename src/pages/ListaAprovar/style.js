@@ -3,6 +3,9 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     margin-top:120px;
+    /* font-family: 'Times New Roman', Times, serif; */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
 
   ul {
     margin: 0px; 
@@ -34,6 +37,7 @@ export const Container = styled.div`
       div{
         grid-area: infos;
         display:grid;
+        color:white;
       }
 
       div > span {

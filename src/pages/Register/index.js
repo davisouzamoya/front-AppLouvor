@@ -120,49 +120,42 @@ function Register(){
                 <IoMdContact size={150}/>
               </header>
               <section>
-                <div>
+                
                   <Input
                     placeholder="Nome e Sobrenome"
                     name='nome'
                     Icon={BsListNested}
                     style='left'
                   />
-                </div>
-                <div>
+                
                   <Input
                     placeholder="Email"
                     name='email'
                     Icon={AiOutlineMail}
                     style='left'
                   />
-                </div>
-                <div>
+                
                   <Select
                     Icon={HiMusicNote}
                     options={optionsIntrumentos}
                     name='instrumento'
                     placeholder='Instrumento'
                   />
-                </div>
-                <div>
-                </div>
-                <div>
+                
                   <Select
                     Icon={FiUsers}
                     options={optionFuncao}
                     name='funcao' 
                     placeholder='Função'
                   />
-                </div>
-                <div>
+                
                   <Input
                     placeholder="Contato"
                     name='phone'
                     Icon={RiContactsBook2Line}
                     style='left'
                   />
-                </div>
-                <div>
+                
                   <Input
                     type="date"
                     placeholder="Nascimento"
@@ -170,8 +163,7 @@ function Register(){
                     Icon={AiOutlineCalendar}
                     style='left'
                   />
-                </div>
-                <div>
+                
                   <Input
                     type='password'
                     name='password'
@@ -179,8 +171,7 @@ function Register(){
                     Icon={RiLockPasswordLine}
                     style='left'
                   />
-                </div>
-                <div>
+                
                   <Input
                     type='password'
                     name='confirmarSenha'
@@ -188,7 +179,7 @@ function Register(){
                     Icon={RiLockPasswordLine}
                     style='left'
                   />
-                </div>
+                
               </section>
             </div>
             <footer>

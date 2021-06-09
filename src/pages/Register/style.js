@@ -11,9 +11,7 @@ export const Container = styled.div`
     }
 
     section{
-       div{
-        /* line-height: 15px; */
-       }
+        margin-bottom: 10px;
     }
   } 
 
