@@ -34,13 +34,18 @@ export const Container = styled.div`
       div{
         grid-area: infos;
         display:grid;
-        color:white;
+        color:var(--white);
       }
 
       div > span {
         text-transform:capitalize
       }
     }
+  }
+
+  li:hover{
+    background: var(--backTransparent);
+    border-radius:15px;
   }
 }
 `

@@ -28,11 +28,11 @@ export const Container = styled.div`
     display:grid;
     justify-content:center;
     align-items:center;
-    color:white;
+    color:var(--white);
     margin-top:1px;
 
     p:hover{
-      color:#aeafb0;
+      color:var(--loadingHover);
     }
   }
 `

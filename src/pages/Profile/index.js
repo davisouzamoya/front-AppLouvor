@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import Header from '../../components/header/index'
-import { Profile } from "./style";
+import { Container } from "./style";
 import { backEnd } from "../../service/api";
 import Button from '../../components/Button/index'
 import Textarea from '../../components/Textarea/index'
@@ -46,7 +46,7 @@ function Profiles(){
   return (
     <div>
     <Header/>
-    <Profile>
+    <Container>
       <Form 
         ref={formRef}
         >
@@ -70,7 +70,7 @@ function Profiles(){
         </Button> */}
       </footer>
       </Form>
-    </Profile>
+    </Container>
     </div>
   );
 }

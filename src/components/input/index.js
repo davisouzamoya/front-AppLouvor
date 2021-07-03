@@ -11,7 +11,7 @@ function Input({
     name,
     id
   }){
-  const { seachLyrics,filterMusic } = useContext(ProviderContext)
+  const { seachLyrics,filterMusic,setLoading } = useContext(ProviderContext)
   const {fieldName,registerField,defaultValue,error} = useField(name)
   const inputRef = useRef(null)
   const [isFocused,setIsFocused] = useState(false)
@@ -30,6 +30,7 @@ function Input({
 
   function changeInput(){
     if(name === 'seachArtist'){
+      setLoading(true)
       seachLyrics(inputRef.current.value)
     }
 

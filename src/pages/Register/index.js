@@ -21,7 +21,7 @@ function Register(){
   const formRef = useRef(null)
   let history = useHistory();
   const { registerUser,currentUser } = useContext(AuthContext)
-  const { loading } = useContext(ProviderContext)
+  const { loading,setLoading } = useContext(ProviderContext)
   const optionsIntrumentos = [
     { value: "guitarra", label: "Guitarra" },
     { value: "violao",   label: "Violão" },
@@ -39,6 +39,7 @@ function Register(){
 
   async function handleSubmit(data,{ reset }){    
     try{
+      setLoading(true);
       formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
@@ -85,6 +86,7 @@ function Register(){
       data.email = data.email.toLowerCase()
       
       registerUser(data)
+      setLoading(false);
     }catch (err){
       const validationErrors = {};
 
@@ -92,7 +94,9 @@ function Register(){
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
         });
+        setLoading(false);
         formRef.current.setErrors(validationErrors);
+        
       }
     }
   }

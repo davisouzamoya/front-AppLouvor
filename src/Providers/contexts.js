@@ -46,6 +46,7 @@ export function Provider({children}){
 
     setArtist(artist)
     setValue(optionsLyrics)
+    setLoading(false)
   }
 
   async function seachVideo(e){

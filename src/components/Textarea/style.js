@@ -8,7 +8,7 @@ export const ContainerText = styled.textarea`
     height:300px;
     width:100%;
     color:white;
-    background: rgba(31,78,120,255);
+    background: var(--background);
     font-family: 'Roboto', sans-serif;
     
 `

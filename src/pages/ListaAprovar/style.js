@@ -37,7 +37,7 @@ export const Container = styled.div`
       div{
         grid-area: infos;
         display:grid;
-        color:white;
+        color:var(--white);
       }
 
       div > span {
@@ -45,6 +45,11 @@ export const Container = styled.div`
       }
     }
   }
+
+  li:hover{
+        background: var(--backTransparent);
+        border-radius:15px;
+      }
 }
 `
 

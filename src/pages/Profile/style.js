@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 
-export const Profile = styled.div`
+export const Container = styled.div`
     margin-top:100px;
   
     header{
@@ -10,12 +10,13 @@ export const Profile = styled.div`
       text-align:center;
       
       img{  
+        margin-left: 15%;
         height:180px;
-        border-radius:50%;
+        border-radius:50%;  
       }
 
       h1{
-        color:white;
+        color:var(--white);
         font-family: 'Roboto', sans-serif;
         font-weight: 600;
       }

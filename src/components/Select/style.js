@@ -1,21 +1,20 @@
 import styled,{css} from 'styled-components'
-import { shade } from 'polished'
 
 export const Container = styled.div`
   
     section{
       border-radius: 10px;
-       border: 2px solid transparent;     
-      background: rgba(161,161,161,0.1);
+      border: 2px solid transparent;     
+      background: var(--backTransparent);
       display:flex;
       align-items:center;
       font-family: 'Roboto', sans-serif;
-            font-weight: 400;
+      font-weight: 400;
 
       div{
         margin-left:0.3rem;
         
-        color: white;
+        color: var(--white);
       }
     }
 

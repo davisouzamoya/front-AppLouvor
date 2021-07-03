@@ -9,6 +9,7 @@
     "@unform/core": "^2.1.6",
     "@unform/web": "^2.1.6",
     "axios": "^0.21.1",
+    "json-server": "^0.16.3",
     "polished": "^4.1.1",
     "pptxgenjs": "^3.4.0",
     "react": "^17.0.1",

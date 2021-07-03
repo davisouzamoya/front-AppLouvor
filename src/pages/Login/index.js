@@ -19,11 +19,13 @@ function Login(){
   const [isFilled,setIsFilled] = useState(false)
   const [isinputsComplete,setIsInputsComplete] = useState(false)
   const { handleLogin,currentUser } = useContext(AuthContext)
-  const { loading } = useContext(ProviderContext)
+  const { loading,setLoading } = useContext(ProviderContext)
   const formRef = useRef(null)
+  
 
   async function handleSubmit(data,{ reset }){    
     try{
+      setLoading(true)
       formRef.current.setErrors({});
 
       const schema = Yup.object().shape({

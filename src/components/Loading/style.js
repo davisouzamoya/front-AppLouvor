@@ -12,13 +12,12 @@ export const Container = styled.div`
   z-index: 2;
   align-items:center;
   justify-content:center;
-  background-color:rgba(255,255,255, 0.5);
-
+  
   section{
     display:grid;
 
     p{
-      color: #027cbf;
+      color: var(--white);
       font-size:bold;
     }
   }

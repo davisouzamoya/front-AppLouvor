@@ -47,14 +47,14 @@ function componetSelect({Icon,name, options,placeholder, ...rest}){
     }),
     singleValue: (provided, state) => ({
       ...provided,
-      color:'white',
+      color:'var(--white)',
     }),
     indicatorsContainer: (provided, state) => ({
       ...provided,
     }),
     clearIndicator: (provided, state) => ({
       ...provided,
-      color:'white',
+      color:'var(--white)',
     }),
     indicatorSeparator: (provided, state) => ({
       ...provided,
@@ -71,11 +71,11 @@ function componetSelect({Icon,name, options,placeholder, ...rest}){
     dropdownIndicator: (provided, state) => ({
       ...provided,
       color:'white',
-      background:'rgba(121,121,121,0.1)'
+      background:'var(--select)'
     }),
     menu: (provided, state) => ({
       ...provided,
-     background:'rgba(56, 104, 148) '
+     background:'var(--selectSecond) '
    }),
     menuList: (provided, state) => ({
       ...provided,
@@ -84,14 +84,14 @@ function componetSelect({Icon,name, options,placeholder, ...rest}){
     option: (provided, state) => ({
       ...provided,
       width:'98%',
-      color:'white',
+      color:'var(--white)',
       '&:hover': {
-        color: state.isFocused ? 'black' : 'white'
+        color: state.isFocused ? 'var(--black)' : 'var(--white)'
      }
     })
     ,placeholder: (provided, state) => ({
       ...provided,
-      color:'white'
+      color:'var(--white)'
     })
   }
 

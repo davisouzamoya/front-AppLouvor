@@ -7,7 +7,7 @@ export const Container = styled.div`
     padding:0;
     display: grid;
     grid-template-columns: auto auto;     
-    background-color:#56CCF2;
+    background-color:var(--menu);
     align-items:center;
     left:0;
     top:0;
@@ -23,7 +23,7 @@ export const MySection = styled.section`
       z-index: 1;
       top: 0;
       left: 0;
-      background-color: ${shade(0.2, "#56CCF2")};
+      background-color: ${shade(0.2, "var(--menu)")};
       overflow-x: hidden;
       transition: 0.5s;
       padding-top: 60px;
@@ -38,7 +38,7 @@ export const MySection = styled.section`
       }
 
       a:hover {
-        color: rgba(31,78,120,255);
+        color: var(--background);
       }
 
       .closebtn {

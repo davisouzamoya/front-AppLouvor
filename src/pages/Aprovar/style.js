@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 
-export const Profile = styled.div`
+export const Container = styled.div`
     margin-top:100px;
   
     header{
@@ -15,9 +15,9 @@ export const Profile = styled.div`
       }
 
       h1{
-        color:white;
-        font-family: Roboto;
-        font-weight: 400;
+        color:var(--white);
+        font-family: 'Roboto', sans-serif;
+        font-weight: 600;
       }
   }
   

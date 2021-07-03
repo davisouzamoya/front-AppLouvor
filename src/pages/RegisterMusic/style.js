@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { shade } from "polished";
 
 export const Container = styled.div`
     margin-top:120px;
@@ -10,6 +9,7 @@ export const Container = styled.div`
 
     section{
       display: grid;
+      margin-bottom: 15px;
 
       iframe{
         margin-top:10px;

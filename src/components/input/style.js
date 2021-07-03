@@ -7,7 +7,7 @@ export const Container = styled.div`
           font-weight: 400;
       fieldset{
         legend{
-          color: white;
+          color: var(--white);
         }
         border-radius: 10px;
         border: 2px solid transparent;
@@ -15,9 +15,9 @@ export const Container = styled.div`
         ${(props) =>
           props.$isFocused  &&
             css`
-              border: 2px solid white;
+              border: 2px solid var(--white);
             `}
-          background: rgba(161,161,161,0.1);
+          background: var(--backTransparent);
     
         div{
           margin: 0;
@@ -25,7 +25,7 @@ export const Container = styled.div`
           box-sizing: border-box;
           display:flex;
           align-items: center;
-          color: white;
+          color: var(--white);
           
 
           input{
@@ -34,11 +34,11 @@ export const Container = styled.div`
             outline:none;
             font-size:18px;
             width:100%;
-            color: white;
+            color: var(--white);;
           }
 
           input::placeholder{
-            color: ${(props) => props.$isFocused ? 'transparent':'white'};
+            color: ${(props) => props.$isFocused ? 'transparent':'var(--white)'};
           }
           
           input[type="date"]::-webkit-calendar-picker-indicator {
